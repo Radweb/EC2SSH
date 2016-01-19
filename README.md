@@ -1,5 +1,7 @@
 # EC2SSH
 
+![](https://i.imgur.com/JL5uWEd.jpg)
+
 Note the data displayed is probably specific to our systems, may work weirdly for others.
 
 ## Installation
