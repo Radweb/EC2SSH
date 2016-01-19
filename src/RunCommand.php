@@ -35,7 +35,7 @@ class RunCommand extends Command
         if ( ! $configuration) {
             $output->writeln('<error>No credentials stored. Run "ec2ssh config" first.</error>');
 
-            return;
+            return 1; // stops the runner from continuing
         }
 
         $client = new Ec2Client([
