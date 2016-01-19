@@ -1,5 +1,6 @@
 {
     "name": "radweb/ec2ssh",
+    "license": "MIT",
     "require": {
         "symfony/console": "^3.0",
         "aws/aws-sdk-php": "^3.13"
