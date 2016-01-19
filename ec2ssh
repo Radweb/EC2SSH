@@ -3,7 +3,7 @@
 cd ${0%/*}
 
 if [ ! -f "./ec2ssh-worker" ]; then
-	cd ../radweb/ec2ssh
+    cd ../radweb/ec2ssh
 fi
 
-./ec2ssh-worker && ssh $(cat /tmp/ec2ssh-tmp-server)
+./ec2ssh-worker "$@" && ssh $(cat /tmp/ec2ssh-tmp-server)

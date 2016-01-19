@@ -61,5 +61,7 @@ class ConfigureCommand extends Command
         $this->configuration->write(compact('accessKey', 'secretKey', 'region'));
 
         $output->writeln('Credentials Saved.');
+
+        return 1; // stops the runner from continuing
     }
 }
