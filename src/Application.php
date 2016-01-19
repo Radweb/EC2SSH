@@ -16,6 +16,13 @@ class Application extends ConsoleApplication
         return 'run';
     }
 
+    protected function getDefaultCommands()
+    {
+        $commands = parent::getDefaultCommands();
+        $commands[] = new RunCommand();
+        return $commands;
+    }
+
     public function getDefinition()
     {
         $inputDefinition = parent::getDefinition();
