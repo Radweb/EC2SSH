@@ -12,6 +12,17 @@ use Symfony\Component\Console\Question\Question;
 
 class RunCommand extends Command
 {
+    /**
+     * @var Configuration
+     */
+    private $configuration;
+
+    public function __construct(Configuration $configuration, $name = null)
+    {
+        parent::__construct($name);
+        $this->configuration = $configuration;
+    }
+
     protected function configure()
     {
         $this->setName('run')->setDescription('List all EC2 instances');
@@ -19,14 +30,20 @@ class RunCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-//        $credentials = file_get_contents($_SERVER['HOME'] . '/.aws/credentials');
+        $configuration = $this->configuration->read();
+
+        if ( ! $configuration) {
+            $output->writeln('<error>No credentials stored. Run "ec2ssh config" first.</error>');
+
+            return;
+        }
 
         $client = new Ec2Client([
           'credentials' => [
-            'key' => 'XXX',
-            'secret' => 'XXX',
+            'key' => $configuration['accessKey'],
+            'secret' => $configuration['secretKey'],
           ],
-          'region' => 'eu-west-1',
+          'region' => $configuration['region'],
           'version' => 'latest',
         ]);
 
@@ -88,7 +105,18 @@ class RunCommand extends Command
 
         $table->render();
 
-        $question = new Question('Which box to SSH to? ');
+        $range = range(1, count($instances));
+
+        $question = (new Question('Which box to SSH to? '))
+          ->setAutocompleterValues($range)
+          ->setValidator(function ($value) use ($range) {
+              if ( ! in_array($value, $range)) {
+                  throw new \Exception('Invalid choice');
+              }
+
+              return $value;
+          });
+
         $choice = $this->getHelper('question')->ask($input, $output, $question);
 
         $instance = $instances[$choice - 1];
