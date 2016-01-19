@@ -1,5 +1,7 @@
 # EC2SSH
 
+Note the data displayed is probably specific to our systems, may work weirdly for others.
+
 ## Installation
 
 ```
