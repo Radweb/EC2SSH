@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$configuration = new Radweb\EC2SSH\Configuration($_SERVER['HOME'] . '/.ec2ssh');
+
+$application = new Symfony\Component\Console\Application();
+
+$application->addCommands([
+  new Radweb\EC2SSH\RunCommand($configuration),
+  new Radweb\EC2SSH\ConfigureCommand($configuration),
+]);
+
+$application->setDefaultCommand('run');
+
+$application->run();

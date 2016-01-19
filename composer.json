@@ -14,5 +14,8 @@
         "psr-4": {
             "Radweb\\EC2SSH\\": "src"
         }
-    }
+    },
+    "bin": [
+        "ec2ssh"
+    ]
 }

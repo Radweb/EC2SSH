@@ -122,6 +122,8 @@ class RunCommand extends Command
         $instance = $instances[$choice - 1];
         $name = $instance['role'] . ' (' . $instance['id'] . ')';
 
+        file_put_contents('/tmp/ec2ssh-tmp-server', 'ubuntu@'.$instance['dns']);
+
         $output->writeln('');
         $output->writeln('<info>Connecting to ' . $name . '...</info>');
     }
