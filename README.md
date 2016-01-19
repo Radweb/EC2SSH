@@ -2,21 +2,6 @@
 
 ## Installation
 
-For now, it's not on Composer (private package), so you need to install from GitHub.
-
-Edit your _global_ `composer.json` file (it's at `~/.composer/composer.json`) to add in this:
-
-```json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/Radweb/ec2ssh"
-    }
-]
-```
-
-Now, run:
-
 ```
 composer global require radweb/ec2ssh
 ```
