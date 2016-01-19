@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$application = new Radweb\EC2SSH\Application();
+
+$application->add(new Radweb\EC2SSH\RunCommand());
+
+$application->run();

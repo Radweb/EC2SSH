@@ -1,0 +1,18 @@
+{
+    "name": "radweb/ec2ssh",
+    "require": {
+        "symfony/console": "^3.0",
+        "aws/aws-sdk-php": "^3.13"
+    },
+    "authors": [
+        {
+            "name": "Dan Harper",
+            "email": "dan@radweb.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Radweb\\EC2SSH\\": "src"
+        }
+    }
+}
